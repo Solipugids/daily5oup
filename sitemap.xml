@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://wangchao.cf/2018/06/22/Things-need-to-be-noticed-at-the-begining-of-django/</loc>
+    
+    <lastmod>2018-06-22T04:06:09.284Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wangchao.cf/2018/06/21/Use-Socket-io-in-other-modules-by-Koa2/</loc>
+    
+    <lastmod>2018-06-21T10:11:53.155Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wangchao.cf/2018/06/01/Use-Array-of-Middleware-in-Koa-Router/</loc>
+    
+    <lastmod>2018-06-01T09:07:52.955Z</lastmod>
+    
+  </url>
+  
+</urlset>
