@@ -108,24 +108,25 @@
 
 
 
-  <meta name="description" content="没什么，随便写写">
-<meta name="keywords" content="node.js, web, data mining">
-<meta property="og:type" content="website">
-<meta property="og:title" content="是日靓汤">
-<meta property="og:url" content="http://wangchao.cf/index.html">
+  <meta name="description" content="在使用Koa2框架过程中，发现如果想在特定页面下实时输出信息，需要引用socket.io模块。该模块本身的功能很多，除了可以向用户实时打印信息外，最重要是可以搭建类似即时网页聊天室。这个模块的原理是当用户连接上网站之后，就建立起了一个socket连接，随时发起会话。对于我的需求来说，其实只是想实现其中一个非常简单的特性，就是在其中一个页面中显示服务器上的运行信息或者输出。最开始的考虑是建立一个na">
+<meta name="keywords" content="node.js,socket.io,router">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Koa2框架下在特定页面或者路由中使用socket.io的解决方案">
+<meta property="og:url" content="http://wangchao.cf/2018/06/21/Use-Socket-io-in-other-modules-by-Koa2/index.html">
 <meta property="og:site_name" content="是日靓汤">
-<meta property="og:description" content="没什么，随便写写">
+<meta property="og:description" content="在使用Koa2框架过程中，发现如果想在特定页面下实时输出信息，需要引用socket.io模块。该模块本身的功能很多，除了可以向用户实时打印信息外，最重要是可以搭建类似即时网页聊天室。这个模块的原理是当用户连接上网站之后，就建立起了一个socket连接，随时发起会话。对于我的需求来说，其实只是想实现其中一个非常简单的特性，就是在其中一个页面中显示服务器上的运行信息或者输出。最开始的考虑是建立一个na">
 <meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-06-21T10:11:53.155Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="是日靓汤">
-<meta name="twitter:description" content="没什么，随便写写">
+<meta name="twitter:title" content="Koa2框架下在特定页面或者路由中使用socket.io的解决方案">
+<meta name="twitter:description" content="在使用Koa2框架过程中，发现如果想在特定页面下实时输出信息，需要引用socket.io模块。该模块本身的功能很多，除了可以向用户实时打印信息外，最重要是可以搭建类似即时网页聊天室。这个模块的原理是当用户连接上网站之后，就建立起了一个socket连接，随时发起会话。对于我的需求来说，其实只是想实现其中一个非常简单的特性，就是在其中一个页面中显示服务器上的运行信息或者输出。最开始的考虑是建立一个na">
 
 
 
 
 
 
-  <link rel="canonical" href="http://wangchao.cf/"/>
+  <link rel="canonical" href="http://wangchao.cf/2018/06/21/Use-Socket-io-in-other-modules-by-Koa2/"/>
 
 
 
@@ -135,7 +136,7 @@
   };
 </script>
 
-  <title>是日靓汤</title>
+  <title>Koa2框架下在特定页面或者路由中使用socket.io的解决方案 | 是日靓汤</title>
   
 
 
@@ -191,8 +192,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -233,7 +233,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
     <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
   </li>
@@ -301,144 +301,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wangchao.cf/2018/06/22/Things-need-to-be-noticed-at-the-begining-of-django/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WANG Chao">
-      <meta itemprop="description" content="没什么，随便写写">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="是日靓汤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/22/Things-need-to-be-noticed-at-the-begining-of-django/" itemprop="url">
-                  Things need to be noticed at the begining of django
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-06-22 12:06:09" itemprop="dateCreated datePublished" datetime="2018-06-22T12:06:09+08:00">2018-06-22</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -470,11 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/21/Use-Socket-io-in-other-modules-by-Koa2/" itemprop="url">
-                  Koa2框架下在特定页面或者路由中使用socket.io的解决方案
-                </a>
+          <h1 class="post-title" itemprop="name headline">Koa2框架下在特定页面或者路由中使用socket.io的解决方案
               
             
           </h1>
@@ -519,6 +380,14 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
 
@@ -537,9 +406,7 @@
       
 
       
-        
-          
-            <p>在使用Koa2框架过程中，发现如果想在特定页面下实时输出信息，需要引用<a href="https://socket.io/" target="_blank" rel="noopener">socket.io模块</a>。<br>该模块本身的功能很多，除了可以向用户实时打印信息外，最重要是可以搭建类似即时网页聊天室。这个模块的原理是当用户连接上网站之后，就建立起了一个socket连接，随时发起会话。对于我的需求来说，其实只是想实现其中一个非常简单的特性，就是在其中一个页面中显示服务器上的运行信息或者输出。最开始的考虑是建立一个<a href="https://socket.io/docs/rooms-and-namespaces/#custom-namespaces" target="_blank" rel="noopener">namespace</a>。这样可以为指定的路径或者路由页面分配socket，起到降低TCP连接和隔离的效果。在这个namespace下面，可以添加join和leave的功能。</p>
+        <p>在使用Koa2框架过程中，发现如果想在特定页面下实时输出信息，需要引用<a href="https://socket.io/" target="_blank" rel="noopener">socket.io模块</a>。<br>该模块本身的功能很多，除了可以向用户实时打印信息外，最重要是可以搭建类似即时网页聊天室。这个模块的原理是当用户连接上网站之后，就建立起了一个socket连接，随时发起会话。对于我的需求来说，其实只是想实现其中一个非常简单的特性，就是在其中一个页面中显示服务器上的运行信息或者输出。最开始的考虑是建立一个<a href="https://socket.io/docs/rooms-and-namespaces/#custom-namespaces" target="_blank" rel="noopener">namespace</a>。这样可以为指定的路径或者路由页面分配socket，起到降低TCP连接和隔离的效果。在这个namespace下面，可以添加join和leave的功能。</p>
 <p>对于在Koa2下创建namespace的方法，用.of实现起来很简单，</p>
 <pre><code>const server = require(&apos;http&apos;).createServer(app.callback());
 const io = require(&apos;socket.io&apos;)(server);
@@ -562,8 +429,6 @@ io
     setInterval(function(){socket.emit(&apos;date&apos;, {&apos;date&apos;: new Date()}, 1000);})
 })
 </code></pre>
-          
-        
       
     </div>
 
@@ -581,185 +446,44 @@ io
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wangchao.cf/2018/06/01/Use-Array-of-Middleware-in-Koa-Router/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WANG Chao">
-      <meta itemprop="description" content="没什么，随便写写">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="是日靓汤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/01/Use-Array-of-Middleware-in-Koa-Router/" itemprop="url">
-                  koa和multer构造网站文件上传功能
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-06-01 15:23:46 / Modified: 17:07:52" itemprop="dateCreated datePublished" datetime="2018-06-01T15:23:46+08:00">2018-06-01</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/node-js/" rel="tag"># node.js</a>
           
-            
+            <a href="/tags/socket-io/" rel="tag"># socket.io</a>
           
-
+            <a href="/tags/router/" rel="tag"># router</a>
           
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在使用koa和multer构造网站文件上传功能的过程中遇到了几个棘手的问题。</p>
-<p>根据官方文档的<a href="https://github.com/expressjs/multer" target="_blank" rel="noopener">说明</a>，中间件中可以用以下方法调用multer：</p>
-<pre><code>const multer  = require(&apos;multer&apos;)
-const upload = multer({ dest: &apos;uploads/&apos; })
-const router = require(&apos;koa-router&apos;)()
-
-router.post(&apos;/upload&apos;, upload.single(&apos;files&apos;), async (ctx, next)=&gt;{})
-</code></pre><p>注：ctx是有koa传入的封装了request和response的变量，可以通过ctx.req和ctx.res访问request和response，但是不支持直接调用底层res进行响应，比如res.send, res.writeHead, res.write都应该被避免。</p>
-<p>当我在重构网站控制器的时候，上传文件功能被放在一个单独的文件upload.js而非app.js里面。在upload.js里面，应该如何使用multer实现上传功能，并利用koa-router跳转到下一个页面去？</p>
-<p>常规的控制器本身是按照如下的方式写:</p>
-<pre><code>module.exports = {
-    &apos;POST /uploads&apos;: async(ctx, next) =&gt; {}
-}
-</code></pre><p>通过另外一个mapping函数来自动处理控制器GET，POST等动作。但是multer这里有两个中间件，upload.single和async(ctx, next)，就没有办法直接放进去。</p>
-<p>Stack Overflow上面找到一个<a href="https://stackoverflow.com/questions/46622473/expressjs-how-to-require-multer-in-another-file" target="_blank" rel="noopener">问答</a>，和我的情况类似。有人给出来了两个方案：<br>方案一</p>
-<pre><code>module.exports = [upload.single(&apos;files&apos;), async (ctx, next) {
-    // Put the rest of your code here
-}];
-</code></pre><p>方案二</p>
-<pre><code>var filesUpload = upload.single(&apos;files&apos;);
-
-module.exports = function(ctx) {
-    imageUpload(ctx, function(err) {
-        // Put the rest of your code here
-    });
-};
-</code></pre><p>第二种方案是把剩下的功能（路由）作为multer中间件的callback，看起来没有第一种方案直观，所以我没有尝试。直接使用第一种方案，把两个中间件作为数组的形式expose出来。</p>
-<p>合并成数组后运行测试报错如下：</p>
-<pre><code>Error: post `/uploads`: `middleware` must be a function, not `object`
-</code></pre><p>再回头去网上找到了<a href="https://realguess.net/2015/03/18/use-array-of-middleware-in-koa-router/" target="_blank" rel="noopener">解决办法</a>，说是koa-router不支持以数组作为中间件，多个中间件必须一个一个地输入。如果合并成数组，就会扔出来以上错误，需要调用koa-compose来解决这个问题，形式为以下：</p>
-<pre><code>app.get(&apos;/foo&apos;, compose([middleware1, middleware2]));
-</code></pre><p>按照以上提示，文件上传成功。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/01/Use-Array-of-Middleware-in-Koa-Router/" rel="next" title="koa和multer构造网站文件上传功能">
+                <i class="fa fa-chevron-left"></i> koa和multer构造网站文件上传功能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/22/Things-need-to-be-noticed-at-the-begining-of-django/" rel="prev" title="Things need to be noticed at the begining of django">
+                Things need to be noticed at the begining of django <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -769,14 +493,19 @@ module.exports = function(ctx) {
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -1009,6 +738,10 @@ module.exports = function(ctx) {
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
 
   
 
