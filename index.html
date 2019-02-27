@@ -364,7 +364,7 @@
                 
               
 
-              <time title="Created: 2019-02-27 15:48:43 / Modified: 16:07:06" itemprop="dateCreated datePublished" datetime="2019-02-27T15:48:43+08:00">2019-02-27</time>
+              <time title="Created: 2019-02-27 15:48:43 / Modified: 16:17:35" itemprop="dateCreated datePublished" datetime="2019-02-27T15:48:43+08:00">2019-02-27</time>
             
 
             
@@ -404,9 +404,16 @@
       
         
           
-            <p>Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可：<br>    python manage.py runserver 0.0.0.0:8000<br>但是在生产环境下不会这么做。<br>Django在官方网站上，有关于如何利用WSGI部署生产项目的<a href="https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/" target="_blank" rel="noopener">详细说明</a>。在centOS 7服务器上发现，WSGI部署本身比较容易实现，但是WSGI和Nginx联用就容易出错。在实践过程中按照很多网上博客的内容执行没有成功过，这可能和软件版本、系统环境等因素有关系（具体出错的原因无法追溯）。为了容易重复以下的部署过程，列出相关版本参数：<br>    Python 2.7.5<br>    Django 1.11.13</p>
-<p>注：查看Django版本的方法：<br>    进入python命令行<br>    import django<br>    django.get_version()</p>
-
+            <p>Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可：</p>
+<pre><code>python manage.py runserver 0.0.0.0:8000
+</code></pre><p>但是在生产环境下不会这么做。<br>Django在官方网站上，有关于如何利用WSGI部署生产项目的<a href="https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/" target="_blank" rel="noopener">详细说明</a>。在centOS 7服务器上发现，WSGI部署本身比较容易实现，但是WSGI和Nginx联用就容易出错。在实践过程中按照很多网上博客的内容执行没有成功过，这可能和软件版本、系统环境等因素有关系（具体出错的原因无法追溯）。为了容易重复以下的部署过程，列出相关版本参数：</p>
+<pre><code>Python 2.7.5
+Django 1.11.13
+</code></pre><p>注：查看Django版本的方法：</p>
+<pre><code>进入python命令行
+import django
+django.get_version()
+</code></pre>
           
         
       
