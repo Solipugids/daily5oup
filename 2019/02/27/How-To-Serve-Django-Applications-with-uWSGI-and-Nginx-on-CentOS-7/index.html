@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="在使用koa和multer构造网站文件上传功能的过程中遇到了几个棘手的问题。 根据官方文档的说明，中间件中可以用以下方法调用multer： const multer  = require(&amp;apos;multer&amp;apos;) const upload = multer({ dest: &amp;apos;uploads/&amp;apos; }) const router = require(&amp;apos;koa">
-<meta name="keywords" content="node.js,koa-multer,koa-router">
+  <meta name="description" content="Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可：    python manage.py runserver 0.0.0.0:8000但是在生产环境下不会这么做。Django在官方网站上，有关于如何利用WSGI部署生产项目的详细说明。在centOS 7服务器上发现，WSGI部署本身比较容易实现，但是WSGI和Nginx联用就容易出错。在实践过程中按照很多网上博客的内容执行没">
+<meta name="keywords" content="django,uwsgi,centos,nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="koa和multer构造网站文件上传功能">
-<meta property="og:url" content="https://solipugids.github.io/2018/06/01/Use-Array-of-Middleware-in-Koa-Router/index.html">
+<meta property="og:title" content="How To Serve Django Applications with uWSGI and Nginx on CentOS 7">
+<meta property="og:url" content="https://solipugids.github.io/2019/02/27/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/index.html">
 <meta property="og:site_name" content="是日靚湯">
-<meta property="og:description" content="在使用koa和multer构造网站文件上传功能的过程中遇到了几个棘手的问题。 根据官方文档的说明，中间件中可以用以下方法调用multer： const multer  = require(&amp;apos;multer&amp;apos;) const upload = multer({ dest: &amp;apos;uploads/&amp;apos; }) const router = require(&amp;apos;koa">
+<meta property="og:description" content="Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可：    python manage.py runserver 0.0.0.0:8000但是在生产环境下不会这么做。Django在官方网站上，有关于如何利用WSGI部署生产项目的详细说明。在centOS 7服务器上发现，WSGI部署本身比较容易实现，但是WSGI和Nginx联用就容易出错。在实践过程中按照很多网上博客的内容执行没">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-06-01T09:07:52.955Z">
+<meta property="og:updated_time" content="2019-02-27T08:07:06.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="koa和multer构造网站文件上传功能">
-<meta name="twitter:description" content="在使用koa和multer构造网站文件上传功能的过程中遇到了几个棘手的问题。 根据官方文档的说明，中间件中可以用以下方法调用multer： const multer  = require(&amp;apos;multer&amp;apos;) const upload = multer({ dest: &amp;apos;uploads/&amp;apos; }) const router = require(&amp;apos;koa">
+<meta name="twitter:title" content="How To Serve Django Applications with uWSGI and Nginx on CentOS 7">
+<meta name="twitter:description" content="Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可：    python manage.py runserver 0.0.0.0:8000但是在生产环境下不会这么做。Django在官方网站上，有关于如何利用WSGI部署生产项目的详细说明。在centOS 7服务器上发现，WSGI部署本身比较容易实现，但是WSGI和Nginx联用就容易出错。在实践过程中按照很多网上博客的内容执行没">
 
 
 
 
 
 
-  <link rel="canonical" href="https://solipugids.github.io/2018/06/01/Use-Array-of-Middleware-in-Koa-Router/">
+  <link rel="canonical" href="https://solipugids.github.io/2019/02/27/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/">
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>koa和multer构造网站文件上传功能 | 是日靚湯</title>
+  <title>How To Serve Django Applications with uWSGI and Nginx on CentOS 7 | 是日靚湯</title>
   
 
 
@@ -318,7 +318,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://solipugids.github.io/2018/06/01/Use-Array-of-Middleware-in-Koa-Router/">
+    <link itemprop="mainEntityOfPage" href="https://solipugids.github.io/2019/02/27/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WANG Chao">
@@ -335,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">koa和multer构造网站文件上传功能
+          <h1 class="post-title" itemprop="name headline">How To Serve Django Applications with uWSGI and Nginx on CentOS 7
               
             
           </h1>
@@ -360,7 +360,7 @@
                 
               
 
-              <time title="Created: 2018-06-01 15:23:46 / Modified: 17:07:52" itemprop="dateCreated datePublished" datetime="2018-06-01T15:23:46+08:00">2018-06-01</time>
+              <time title="Created: 2019-02-27 15:48:43 / Modified: 16:07:06" itemprop="dateCreated datePublished" datetime="2019-02-27T15:48:43+08:00">2019-02-27</time>
             
 
             
@@ -405,38 +405,8 @@
       
 
       
-        <p>在使用koa和multer构造网站文件上传功能的过程中遇到了几个棘手的问题。</p>
-<p>根据官方文档的<a href="https://github.com/expressjs/multer" target="_blank" rel="noopener">说明</a>，中间件中可以用以下方法调用multer：</p>
-<pre><code>const multer  = require(&apos;multer&apos;)
-const upload = multer({ dest: &apos;uploads/&apos; })
-const router = require(&apos;koa-router&apos;)()
-
-router.post(&apos;/upload&apos;, upload.single(&apos;files&apos;), async (ctx, next)=&gt;{})
-</code></pre><p>注：ctx是有koa传入的封装了request和response的变量，可以通过ctx.req和ctx.res访问request和response，但是不支持直接调用底层res进行响应，比如res.send, res.writeHead, res.write都应该被避免。</p>
-<p>当我在重构网站控制器的时候，上传文件功能被放在一个单独的文件upload.js而非app.js里面。在upload.js里面，应该如何使用multer实现上传功能，并利用koa-router跳转到下一个页面去？</p>
-<p>常规的控制器本身是按照如下的方式写:</p>
-<pre><code>module.exports = {
-    &apos;POST /uploads&apos;: async(ctx, next) =&gt; {}
-}
-</code></pre><p>通过另外一个mapping函数来自动处理控制器GET，POST等动作。但是multer这里有两个中间件，upload.single和async(ctx, next)，就没有办法直接放进去。</p>
-<p>Stack Overflow上面找到一个<a href="https://stackoverflow.com/questions/46622473/expressjs-how-to-require-multer-in-another-file" target="_blank" rel="noopener">问答</a>，和我的情况类似。有人给出来了两个方案：<br>方案一</p>
-<pre><code>module.exports = [upload.single(&apos;files&apos;), async (ctx, next) {
-    // Put the rest of your code here
-}];
-</code></pre><p>方案二</p>
-<pre><code>var filesUpload = upload.single(&apos;files&apos;);
-
-module.exports = function(ctx) {
-    imageUpload(ctx, function(err) {
-        // Put the rest of your code here
-    });
-};
-</code></pre><p>第二种方案是把剩下的功能（路由）作为multer中间件的callback，看起来没有第一种方案直观，所以我没有尝试。直接使用第一种方案，把两个中间件作为数组的形式expose出来。</p>
-<p>合并成数组后运行测试报错如下：</p>
-<pre><code>Error: post `/uploads`: `middleware` must be a function, not `object`
-</code></pre><p>再回头去网上找到了<a href="https://realguess.net/2015/03/18/use-array-of-middleware-in-koa-router/" target="_blank" rel="noopener">解决办法</a>，说是koa-router不支持以数组作为中间件，多个中间件必须一个一个地输入。如果合并成数组，就会扔出来以上错误，需要调用koa-compose来解决这个问题，形式为以下：</p>
-<pre><code>app.get(&apos;/foo&apos;, compose([middleware1, middleware2]));
-</code></pre><p>按照以上提示，文件上传成功。</p>
+        <p>Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可：<br>    python manage.py runserver 0.0.0.0:8000<br>但是在生产环境下不会这么做。<br>Django在官方网站上，有关于如何利用WSGI部署生产项目的<a href="https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/" target="_blank" rel="noopener">详细说明</a>。在centOS 7服务器上发现，WSGI部署本身比较容易实现，但是WSGI和Nginx联用就容易出错。在实践过程中按照很多网上博客的内容执行没有成功过，这可能和软件版本、系统环境等因素有关系（具体出错的原因无法追溯）。为了容易重复以下的部署过程，列出相关版本参数：<br>    Python 2.7.5<br>    Django 1.11.13</p>
+<p>注：查看Django版本的方法：<br>    进入python命令行<br>    import django<br>    django.get_version()</p>
 
       
     </div>
@@ -457,11 +427,13 @@ module.exports = function(ctx) {
       
         <div class="post-tags">
           
-            <a href="/tags/node-js/" rel="tag"># node.js</a>
+            <a href="/tags/django/" rel="tag"># django</a>
           
-            <a href="/tags/koa-multer/" rel="tag"># koa-multer</a>
+            <a href="/tags/uwsgi/" rel="tag"># uwsgi</a>
           
-            <a href="/tags/koa-router/" rel="tag"># koa-router</a>
+            <a href="/tags/centos/" rel="tag"># centos</a>
+          
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
           
         </div>
       
@@ -474,15 +446,15 @@ module.exports = function(ctx) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/06/22/Things-need-to-be-noticed-at-the-begining-of-django/" rel="next" title="Things need to be noticed at the begining of django">
+                <i class="fa fa-chevron-left"></i> Things need to be noticed at the begining of django
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/21/Use-Socket-io-in-other-modules-by-Koa2/" rel="prev" title="Koa2框架下在特定页面或者路由中使用socket.io的解决方案">
-                Koa2框架下在特定页面或者路由中使用socket.io的解决方案 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

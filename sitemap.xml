@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://solipugids.github.io/2019/02/27/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/</loc>
+    
+    <lastmod>2019-02-27T08:07:06.871Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://solipugids.github.io/2018/06/22/Things-need-to-be-noticed-at-the-begining-of-django/</loc>
     
     <lastmod>2018-06-22T04:06:09.284Z</lastmod>

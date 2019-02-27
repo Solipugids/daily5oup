@@ -318,6 +318,147 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://solipugids.github.io/2019/02/27/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WANG Chao">
+      <meta itemprop="description" content="没什么，随便写写">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="是日靚湯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/27/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/" itemprop="url">
+                  How To Serve Django Applications with uWSGI and Nginx on CentOS 7
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-27 15:48:43 / Modified: 16:07:06" itemprop="dateCreated datePublished" datetime="2019-02-27T15:48:43+08:00">2019-02-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可：<br>    python manage.py runserver 0.0.0.0:8000<br>但是在生产环境下不会这么做。<br>Django在官方网站上，有关于如何利用WSGI部署生产项目的<a href="https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/" target="_blank" rel="noopener">详细说明</a>。在centOS 7服务器上发现，WSGI部署本身比较容易实现，但是WSGI和Nginx联用就容易出错。在实践过程中按照很多网上博客的内容执行没有成功过，这可能和软件版本、系统环境等因素有关系（具体出错的原因无法追溯）。为了容易重复以下的部署过程，列出相关版本参数：<br>    Python 2.7.5<br>    Django 1.11.13</p>
+<p>注：查看Django版本的方法：<br>    进入python命令行<br>    import django<br>    django.get_version()</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://solipugids.github.io/2018/06/22/Things-need-to-be-noticed-at-the-begining-of-django/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -813,7 +954,7 @@ module.exports = function(ctx) {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -838,7 +979,15 @@ module.exports = function(ctx) {
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
