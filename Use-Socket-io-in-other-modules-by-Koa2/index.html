@@ -112,24 +112,25 @@
 
 
 
-  <meta name="description" content="没什么，随便写写">
-<meta name="keywords" content="node.js, web, data mining, django, python, linux">
-<meta property="og:type" content="website">
-<meta property="og:title" content="是日靚湯">
-<meta property="og:url" content="https://solipugids.github.io/tags/centos-root-user-setting/index.html">
+  <meta name="description" content="在使用Koa2框架过程中，发现如果想在特定页面下实时输出信息，需要引用socket.io模块。该模块本身的功能很多，除了可以向用户实时打印信息外，最重要是可以搭建类似即时网页聊天室。这个模块的原理是当用户连接上网站之后，就建立起了一个socket连接，随时发起会话。对于我的需求来说，其实只是想实现其中一个非常简单的特性，就是在其中一个页面中显示服务器上的运行信息或者输出。最开始的考虑是建立一个na">
+<meta name="keywords" content="node.js,socket.io,router">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Koa2框架下在特定页面或者路由中使用socket.io的解决方案">
+<meta property="og:url" content="https://solipugids.github.io/Use-Socket-io-in-other-modules-by-Koa2/index.html">
 <meta property="og:site_name" content="是日靚湯">
-<meta property="og:description" content="没什么，随便写写">
+<meta property="og:description" content="在使用Koa2框架过程中，发现如果想在特定页面下实时输出信息，需要引用socket.io模块。该模块本身的功能很多，除了可以向用户实时打印信息外，最重要是可以搭建类似即时网页聊天室。这个模块的原理是当用户连接上网站之后，就建立起了一个socket连接，随时发起会话。对于我的需求来说，其实只是想实现其中一个非常简单的特性，就是在其中一个页面中显示服务器上的运行信息或者输出。最开始的考虑是建立一个na">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-06-21T10:11:53.155Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="是日靚湯">
-<meta name="twitter:description" content="没什么，随便写写">
+<meta name="twitter:title" content="Koa2框架下在特定页面或者路由中使用socket.io的解决方案">
+<meta name="twitter:description" content="在使用Koa2框架过程中，发现如果想在特定页面下实时输出信息，需要引用socket.io模块。该模块本身的功能很多，除了可以向用户实时打印信息外，最重要是可以搭建类似即时网页聊天室。这个模块的原理是当用户连接上网站之后，就建立起了一个socket连接，随时发起会话。对于我的需求来说，其实只是想实现其中一个非常简单的特性，就是在其中一个页面中显示服务器上的运行信息或者输出。最开始的考虑是建立一个na">
 
 
 
 
 
 
-  <link rel="canonical" href="https://solipugids.github.io/tags/centos-root-user-setting/">
+  <link rel="canonical" href="https://solipugids.github.io/Use-Socket-io-in-other-modules-by-Koa2/">
 
 
 
@@ -139,7 +140,7 @@
   };
 </script>
 
-  <title>Tag: centos, root, user, setting | 是日靚湯</title>
+  <title>Koa2框架下在特定页面或者路由中使用socket.io的解决方案 | 是日靚湯</title>
   
 
 
@@ -195,7 +196,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -252,7 +253,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
   </li>
@@ -281,28 +282,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -327,56 +306,209 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>centos, root, user, setting<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://solipugids.github.io/Use-Socket-io-in-other-modules-by-Koa2/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WANG Chao">
+      <meta itemprop="description" content="没什么，随便写写">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="是日靚湯">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/How-To-Create-a-Sudo-User-on-CentOS-7/" itemprop="url">
-              
-                <span itemprop="name">CentOS 7中将普通用户列入root组</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Koa2框架下在特定页面或者路由中使用socket.io的解决方案
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-28T19:23:29+08:00" content="2019-02-28">
-          02-28
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
 
+              
+                
+              
+
+              <time title="Created: 2018-06-21 16:01:01 / Modified: 18:11:53" itemprop="dateCreated datePublished" datetime="2018-06-21T16:01:01+08:00">2018-06-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在使用Koa2框架过程中，发现如果想在特定页面下实时输出信息，需要引用<a href="https://socket.io/" target="_blank" rel="noopener">socket.io模块</a>。<br>该模块本身的功能很多，除了可以向用户实时打印信息外，最重要是可以搭建类似即时网页聊天室。这个模块的原理是当用户连接上网站之后，就建立起了一个socket连接，随时发起会话。对于我的需求来说，其实只是想实现其中一个非常简单的特性，就是在其中一个页面中显示服务器上的运行信息或者输出。最开始的考虑是建立一个<a href="https://socket.io/docs/rooms-and-namespaces/#custom-namespaces" target="_blank" rel="noopener">namespace</a>。这样可以为指定的路径或者路由页面分配socket，起到降低TCP连接和隔离的效果。在这个namespace下面，可以添加join和leave的功能。</p>
+<p>对于在Koa2下创建namespace的方法，用.of实现起来很简单，</p>
+<pre><code>const server = require(&apos;http&apos;).createServer(app.callback());
+const io = require(&apos;socket.io&apos;)(server);
+io
+    .of(&apos;/running&apos;)
+    .on(&apos;connection&apos;, function(socket){
+        console.log(&apos;client connected&apos;); //终端显示连接状态
+        setInterval(function(){socket.emit(&apos;date&apos;, {&apos;date&apos;: new Date()}, 1000);}) //页面打印当前时间
+    });
+</code></pre><p>同时记得在客户端页面指定</p>
+<pre><code>var socket = io(&apos;/running&apos;);
+</code></pre><p>socket.io模块对于express框架的支持文档和内容很多，官网上的许多例子基本都是用express，关于Koa2的就比较少。</p>
+<p>最简单的实现方式就是将io对象替换为全局（global）对象，即将</p>
+<pre><code>const io = require(&apos;socket.io&apos;)(server);
+</code></pre><p>替换为</p>
+<pre><code>global.io = require(&apos;socket.io&apos;)(server);
+</code></pre><p>这样，在路由页面下，直接打开io即可</p>
+<pre><code>io.on(&apos;connection&apos;, function(socket){
+    console.log(&apos;someone connected&apos;);
+    setInterval(function(){socket.emit(&apos;date&apos;, {&apos;date&apos;: new Date()}, 1000);})
+})
+</code></pre>
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node-js/" rel="tag"># node.js</a>
+          
+            <a href="/tags/socket-io/" rel="tag"># socket.io</a>
+          
+            <a href="/tags/router/" rel="tag"># router</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Use-Array-of-Middleware-in-Koa-Router/" rel="next" title="koa和multer构造网站文件上传功能">
+                <i class="fa fa-chevron-left"></i> koa和multer构造网站文件上传功能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Things-need-to-be-noticed-at-the-begining-of-django/" rel="prev" title="Things need to be noticed at the begining of django">
+                Things need to be noticed at the begining of django <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -621,6 +753,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
 
   
 
