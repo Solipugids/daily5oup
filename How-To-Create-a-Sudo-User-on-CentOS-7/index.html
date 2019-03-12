@@ -120,12 +120,12 @@
 <meta property="og:site_name" content="是日靚湯">
 <meta property="og:description" content="CentOS 7中将普通用户列入root组 一般初始情况下，CentOS 7的普通用户如果想要执行sudo相关命令的话，每次都要用su命令切换到root用户下执行。常规新增的普通用户没有在root组下，所以需要通过修改/etc/sudoers文件将指定用户加入root组。修改该文件可以使用visudo命令。  切换到root 用su -命令切换到root组。和su命令不同的是，su -命令可以将环">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="https://solipugids.github.io/images/2019022801.png">
-<meta property="og:updated_time" content="2019-02-28T11:37:59.917Z">
+<meta property="og:image" content="https://solipugids.github.io/How-To-Create-a-Sudo-User-on-CentOS-7/1.png">
+<meta property="og:updated_time" content="2019-03-12T08:10:32.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 7中将普通用户列入root组">
 <meta name="twitter:description" content="CentOS 7中将普通用户列入root组 一般初始情况下，CentOS 7的普通用户如果想要执行sudo相关命令的话，每次都要用su命令切换到root用户下执行。常规新增的普通用户没有在root组下，所以需要通过修改/etc/sudoers文件将指定用户加入root组。修改该文件可以使用visudo命令。  切换到root 用su -命令切换到root组。和su命令不同的是，su -命令可以将环">
-<meta name="twitter:image" content="https://solipugids.github.io/images/2019022801.png">
+<meta name="twitter:image" content="https://solipugids.github.io/How-To-Create-a-Sudo-User-on-CentOS-7/1.png">
 
 
 
@@ -366,12 +366,24 @@
                 
               
 
-              <time title="Created: 2019-02-28 19:23:29 / Modified: 19:37:59" itemprop="dateCreated datePublished" datetime="2019-02-28T19:23:29+08:00">2019-02-28</time>
+              <time title="Created: 2019-02-28 19:23:29" itemprop="dateCreated datePublished" datetime="2019-02-28T19:23:29+08:00">2019-02-28</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-12 16:10:32" itemprop="dateModified" datetime="2019-03-12T16:10:32+08:00">2019-03-12</time>
               
             
           </span>
@@ -419,7 +431,7 @@
 </li>
 <li><p>修改sudoers文件</p>
 <p>输入<code>visudo</code>命令打开<code>sudoers</code>文件，编辑文件的方法和<code>vim</code>的用法一样（该文件开始有提到，修改此文件需要执行<code>visudo</code>）。找到文件中的以下位置，</p>
-<p><img src="/images/2019022801.png" alt></p>
+<img src="/How-To-Create-a-Sudo-User-on-CentOS-7/1.png">
 <p>在下面添加一行内容，</p>
 <p><code>user ALL = (ALL) ALL</code></p>
 <p>user就是需要添加到root组的指定用户名。这样，该指定用户就会被添加到root组，之后就能直接执行sudo命令进行高权限操作了。另外，添加的内容有以下几种选择，</p>
@@ -464,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/" rel="next" title="在CentOS 7环境下利用uwsgi和nginx配置django的生产环境">
-                <i class="fa fa-chevron-left"></i> 在CentOS 7环境下利用uwsgi和nginx配置django的生产环境
+              <a href="/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/" rel="next" title="How To Serve Django Applications with uWSGI and Nginx on CentOS 7">
+                <i class="fa fa-chevron-left"></i> How To Serve Django Applications with uWSGI and Nginx on CentOS 7
               </a>
             
           </div>
