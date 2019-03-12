@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://solipugids.github.io/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/</loc>
+    <loc>https://solipugids.github.io/How-To-Create-a-Sudo-User-on-CentOS-7/</loc>
     <lastmod>2019-03-12</lastmod>
   </url>  <url>
-    <loc>https://solipugids.github.io/How-To-Create-a-Sudo-User-on-CentOS-7/</loc>
+    <loc>https://solipugids.github.io/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/</loc>
     <lastmod>2019-03-12</lastmod>
   </url>  <url>
     <loc>https://solipugids.github.io/Things-need-to-be-noticed-at-the-begining-of-django/</loc>

@@ -385,7 +385,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-12 16:10:32" itemprop="dateModified" datetime="2019-03-12T16:10:32+08:00">2019-03-12</time>
+                <time title="Modified: 2019-03-12 16:15:23" itemprop="dateModified" datetime="2019-03-12T16:15:23+08:00">2019-03-12</time>
               
             
           </span>
@@ -420,8 +420,7 @@
       
         
           
-            <p>CentOS 7中将普通用户列入<code>root</code>组</p>
-<p>一般初始情况下，CentOS 7的普通用户如果想要执行<code>sudo</code>相关命令的话，每次都要用<code>su</code>命令切换到<code>root</code>用户下执行。常规新增的普通用户没有在<code>root</code>组下，所以需要通过修改<code>/etc/sudoers</code>文件将指定用户加入<code>root</code>组。修改该文件可以使用<code>visudo</code>命令。</p>
+            <p>一般初始情况下，CentOS 7的普通用户如果想要执行<code>sudo</code>相关命令的话，每次都要用<code>su</code>命令切换到<code>root</code>用户下执行。常规新增的普通用户没有在<code>root</code>组下，所以需要通过修改<code>/etc/sudoers</code>文件将指定用户加入<code>root</code>组。修改该文件可以使用<code>visudo</code>命令。</p>
 <ol>
 <li><p>切换到<code>root</code></p>
 <p>用<code>su -</code>命令切换到<code>root</code>组。和<code>su</code>命令不同的是，<code>su -</code>命令可以将环境变量一起传递过来。</p>
@@ -513,7 +512,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/" itemprop="url">
-                  How To Serve Django Applications with uWSGI and Nginx on CentOS 7
+                  在`CentOS 7`上部署`Django`生产环境
                 </a>
               
             
@@ -556,7 +555,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-12 16:12:13" itemprop="dateModified" datetime="2019-03-12T16:12:13+08:00">2019-03-12</time>
+                <time title="Modified: 2019-03-12 16:14:49" itemprop="dateModified" datetime="2019-03-12T16:14:49+08:00">2019-03-12</time>
               
             
           </span>
@@ -591,7 +590,7 @@
       
         
           
-            <h1 id="在CentOS-7上部署Django生产环境"><a href="#在CentOS-7上部署Django生产环境" class="headerlink" title="在CentOS 7上部署Django生产环境"></a>在<code>CentOS 7</code>上部署<code>Django</code>生产环境</h1><p>Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可：</p>
+            <p>Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver 0.0.0.0:8000</span><br></pre></td></tr></table></figure>
 <p>但是在生产环境下不会这么做。<code>Django</code>在官方网站上，有关于如何利用<code>WSGI</code>部署生产项目的<a href="https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/" target="_blank" rel="noopener">详细说明</a>。在<code>CentOS 7</code>服务器上发现，<code>WSGI</code>的部署过程比较容易实现，但是<code>WSGI</code>和<code>Nginx</code>联用就容易出错。在实践过程中按照很多网上博客的内容执行没有成功过，这可能和软件版本、系统环境等因素有关系（具体出错的原因无法追溯）。主要是在于服务器上不同操作系统及<code>WSGI</code>和<code>Nginx</code>不同版本下的配置上略有不同。我之前在本地服务器和云服务器上分别实践了<code>Django</code>的部署，希望对部署<code>Django</code>遇到困难的朋友有参照意义。</p>
 <p>为了容易重复以下的部署过程，列出相关版本参数：</p>

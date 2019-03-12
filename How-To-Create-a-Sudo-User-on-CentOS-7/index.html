@@ -112,19 +112,19 @@
 
 
 
-  <meta name="description" content="CentOS 7中将普通用户列入root组 一般初始情况下，CentOS 7的普通用户如果想要执行sudo相关命令的话，每次都要用su命令切换到root用户下执行。常规新增的普通用户没有在root组下，所以需要通过修改/etc/sudoers文件将指定用户加入root组。修改该文件可以使用visudo命令。  切换到root 用su -命令切换到root组。和su命令不同的是，su -命令可以将环">
+  <meta name="description" content="一般初始情况下，CentOS 7的普通用户如果想要执行sudo相关命令的话，每次都要用su命令切换到root用户下执行。常规新增的普通用户没有在root组下，所以需要通过修改/etc/sudoers文件将指定用户加入root组。修改该文件可以使用visudo命令。  切换到root 用su -命令切换到root组。和su命令不同的是，su -命令可以将环境变量一起传递过来。  修改sudoers文">
 <meta name="keywords" content="centos, root, user, setting">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS 7中将普通用户列入root组">
 <meta property="og:url" content="https://solipugids.github.io/How-To-Create-a-Sudo-User-on-CentOS-7/index.html">
 <meta property="og:site_name" content="是日靚湯">
-<meta property="og:description" content="CentOS 7中将普通用户列入root组 一般初始情况下，CentOS 7的普通用户如果想要执行sudo相关命令的话，每次都要用su命令切换到root用户下执行。常规新增的普通用户没有在root组下，所以需要通过修改/etc/sudoers文件将指定用户加入root组。修改该文件可以使用visudo命令。  切换到root 用su -命令切换到root组。和su命令不同的是，su -命令可以将环">
+<meta property="og:description" content="一般初始情况下，CentOS 7的普通用户如果想要执行sudo相关命令的话，每次都要用su命令切换到root用户下执行。常规新增的普通用户没有在root组下，所以需要通过修改/etc/sudoers文件将指定用户加入root组。修改该文件可以使用visudo命令。  切换到root 用su -命令切换到root组。和su命令不同的是，su -命令可以将环境变量一起传递过来。  修改sudoers文">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://solipugids.github.io/How-To-Create-a-Sudo-User-on-CentOS-7/1.png">
-<meta property="og:updated_time" content="2019-03-12T08:10:32.422Z">
+<meta property="og:updated_time" content="2019-03-12T08:15:23.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 7中将普通用户列入root组">
-<meta name="twitter:description" content="CentOS 7中将普通用户列入root组 一般初始情况下，CentOS 7的普通用户如果想要执行sudo相关命令的话，每次都要用su命令切换到root用户下执行。常规新增的普通用户没有在root组下，所以需要通过修改/etc/sudoers文件将指定用户加入root组。修改该文件可以使用visudo命令。  切换到root 用su -命令切换到root组。和su命令不同的是，su -命令可以将环">
+<meta name="twitter:description" content="一般初始情况下，CentOS 7的普通用户如果想要执行sudo相关命令的话，每次都要用su命令切换到root用户下执行。常规新增的普通用户没有在root组下，所以需要通过修改/etc/sudoers文件将指定用户加入root组。修改该文件可以使用visudo命令。  切换到root 用su -命令切换到root组。和su命令不同的是，su -命令可以将环境变量一起传递过来。  修改sudoers文">
 <meta name="twitter:image" content="https://solipugids.github.io/How-To-Create-a-Sudo-User-on-CentOS-7/1.png">
 
 
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-12 16:10:32" itemprop="dateModified" datetime="2019-03-12T16:10:32+08:00">2019-03-12</time>
+                <time title="Modified: 2019-03-12 16:15:23" itemprop="dateModified" datetime="2019-03-12T16:15:23+08:00">2019-03-12</time>
               
             
           </span>
@@ -423,8 +423,7 @@
       
 
       
-        <p>CentOS 7中将普通用户列入<code>root</code>组</p>
-<p>一般初始情况下，CentOS 7的普通用户如果想要执行<code>sudo</code>相关命令的话，每次都要用<code>su</code>命令切换到<code>root</code>用户下执行。常规新增的普通用户没有在<code>root</code>组下，所以需要通过修改<code>/etc/sudoers</code>文件将指定用户加入<code>root</code>组。修改该文件可以使用<code>visudo</code>命令。</p>
+        <p>一般初始情况下，CentOS 7的普通用户如果想要执行<code>sudo</code>相关命令的话，每次都要用<code>su</code>命令切换到<code>root</code>用户下执行。常规新增的普通用户没有在<code>root</code>组下，所以需要通过修改<code>/etc/sudoers</code>文件将指定用户加入<code>root</code>组。修改该文件可以使用<code>visudo</code>命令。</p>
 <ol>
 <li><p>切换到<code>root</code></p>
 <p>用<code>su -</code>命令切换到<code>root</code>组。和<code>su</code>命令不同的是，<code>su -</code>命令可以将环境变量一起传递过来。</p>
@@ -476,8 +475,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/" rel="next" title="How To Serve Django Applications with uWSGI and Nginx on CentOS 7">
-                <i class="fa fa-chevron-left"></i> How To Serve Django Applications with uWSGI and Nginx on CentOS 7
+              <a href="/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/" rel="next" title="在`CentOS 7`上部署`Django`生产环境">
+                <i class="fa fa-chevron-left"></i> 在`CentOS 7`上部署`Django`生产环境
               </a>
             
           </div>
