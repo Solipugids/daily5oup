@@ -123,7 +123,7 @@
 <meta property="og:image" content="https://solipugids.github.io/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/1.png">
 <meta property="og:image" content="https://solipugids.github.io/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/2.png">
 <meta property="og:image" content="https://solipugids.github.io/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/3.png">
-<meta property="og:updated_time" content="2019-03-12T08:14:49.831Z">
+<meta property="og:updated_time" content="2019-03-12T08:17:43.590Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在`CentOS 7`上部署`Django`生产环境">
 <meta name="twitter:description" content="Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可： 1python manage.py runserver 0.0.0.0:8000 但是在生产环境下不会这么做。Django在官方网站上，有关于如何利用WSGI部署生产项目的详细说明。在CentOS 7服务器上发现，WSGI的部署过程比较容易实现，但是WSGI和Nginx联用就容易出错。在实践过程中按照很多网上博客的内容执行没">
@@ -385,7 +385,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-12 16:14:49" itemprop="dateModified" datetime="2019-03-12T16:14:49+08:00">2019-03-12</time>
+                <time title="Modified: 2019-03-12 16:17:43" itemprop="dateModified" datetime="2019-03-12T16:17:43+08:00">2019-03-12</time>
               
             
           </span>
@@ -475,7 +475,7 @@ uWSGI 2.0.17.1
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start nginx</span><br><span class="line">sudo systemctl start uwsgi</span><br></pre></td></tr></table></figure>
 <h3 id="关闭SELinux"><a href="#关闭SELinux" class="headerlink" title="关闭SELinux"></a>关闭SELinux</h3><p>所有设置完成之后，在本地测试环境中发现网站可以正常访问了，但是网页的静态文件加载有问题，主页上的图片显示<code>403 error</code>，具体如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Error] Failed to load resource: the server responded with a status of 403 (Forbidden)</span><br></pre></td></tr></table></figure>
-<p>针对此问题查阅网上的时候，很多网上的回复都说是用户或<code>Nginx</code>配置下的静态目录的权限引起的。默认情况下，<code>Nginx</code>会通过名称为<code>nginx</code>的用户进行操作。但是在启动之前已经将自己的账户加入<code>nginx</code>用户组，按道理来说文件权限不会受影响。而且测试了一下在更改了所有目录和文件的权限之后，问题依然存在。这个问题困扰了我一天，后来在<a href="https://www.v2ex.com/t/390432" target="_blank" rel="noopener">V2EX</a>上看到两个小哥提示了一句话才恍然大悟</p>
+<p>针对此问题查阅网上的时候，很多网上的回复都说是用户或<code>Nginx</code>配置下的静态目录的权限引起的。默认情况下，<code>Nginx</code>会通过名称为<code>nginx</code>的用户进行操作。但是在启动之前已经将自己的账户加入<code>nginx</code>用户组，按道理来说文件权限不会受影响。而且测试了一下在更改了所有目录和文件的权限之后，问题依然存在。这个问题困扰了我一天，后来在<a href="https://www.v2ex.com/t/390432" target="_blank" rel="noopener">V2EX</a>上看到两个小哥提示了一句话才恍然大悟：</p>
 <img src="/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/2.png">
 <p>其实在一些教程上也有提到，配置生产模式之前要把<code>SELinux</code>设置为宽容模式，只是自己没有注意到这个。所以碰到这个报错的话，用<code>getenforce</code>检查下，如果在<code>enforcing</code>状态的话就设置<code>SELinux</code>为宽容模式：</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getenforce</span><br><span class="line">sudo setenforce <span class="number">0</span></span><br></pre></td></tr></table></figure>
@@ -483,7 +483,6 @@ uWSGI 2.0.17.1
 <img src="/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/3.png">
 <h3 id="Nginx配置文件中alias和root的区别"><a href="#Nginx配置文件中alias和root的区别" class="headerlink" title="Nginx配置文件中alias和root的区别"></a><code>Nginx</code>配置文件中<code>alias</code>和<code>root</code>的区别</h3><p>仔细看一些<code>Nginx</code>配置文件会发现，有的配置下路径前写的是<code>root</code>，有的路径前写的是<code>alias</code>，比如：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> /static/ &#123;</span><br><span class="line">    <span class="attribute">root</span> /home/user/website/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>启动之前需要检查的问题：</p>
 <p>其实<code>root</code>和<code>alias</code>的区别很简单但是很重要，<code>alias</code>后面指定<code>static</code>文件的全路径，<code>root</code>后面指定的是<code>static</code>文件所在项目的根路径，他会自动在路径后面加上<code>location</code>指定的值。所以如果你的static等网站文件不在默认的目录下，最好还是用<code>alias</code>配置。</p>
 <p>最后，为了确保项目顺利上线，上线前最好检查一下以下是否设定正确：</p>
 <ul>
