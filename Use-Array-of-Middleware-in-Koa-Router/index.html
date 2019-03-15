@@ -112,18 +112,18 @@
 
 
 
-  <meta name="description" content="在使用koa和multer构造网站文件上传功能的过程中遇到了几个棘手的问题。 根据官方文档的说明，中间件中可以用以下方法调用multer： const multer  = require(&amp;apos;multer&amp;apos;) const upload = multer({ dest: &amp;apos;uploads/&amp;apos; }) const router = require(&amp;apos;koa">
+  <meta name="description" content="在使用`koa`和`multer`构造网站文件上传功能的过程中遇到了几个棘手的问题。">
 <meta name="keywords" content="node.js,koa-multer,koa-router">
 <meta property="og:type" content="article">
 <meta property="og:title" content="koa和multer构造网站文件上传功能">
 <meta property="og:url" content="https://solipugids.github.io/Use-Array-of-Middleware-in-Koa-Router/index.html">
 <meta property="og:site_name" content="是日靚湯">
-<meta property="og:description" content="在使用koa和multer构造网站文件上传功能的过程中遇到了几个棘手的问题。 根据官方文档的说明，中间件中可以用以下方法调用multer： const multer  = require(&amp;apos;multer&amp;apos;) const upload = multer({ dest: &amp;apos;uploads/&amp;apos; }) const router = require(&amp;apos;koa">
+<meta property="og:description" content="在使用`koa`和`multer`构造网站文件上传功能的过程中遇到了几个棘手的问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T09:07:52.955Z">
+<meta property="og:updated_time" content="2019-03-15T09:10:47.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="koa和multer构造网站文件上传功能">
-<meta name="twitter:description" content="在使用koa和multer构造网站文件上传功能的过程中遇到了几个棘手的问题。 根据官方文档的说明，中间件中可以用以下方法调用multer： const multer  = require(&amp;apos;multer&amp;apos;) const upload = multer({ dest: &amp;apos;uploads/&amp;apos; }) const router = require(&amp;apos;koa">
+<meta name="twitter:description" content="在使用`koa`和`multer`构造网站文件上传功能的过程中遇到了几个棘手的问题。">
 
 
 
@@ -375,12 +375,24 @@
                 
               
 
-              <time title="Created: 2018-06-01 15:23:46 / Modified: 17:07:52" itemprop="dateCreated datePublished" datetime="2018-06-01T15:23:46+08:00">2018-06-01</time>
+              <time title="Created: 2018-06-01 15:23:46" itemprop="dateCreated datePublished" datetime="2018-06-01T15:23:46+08:00">2018-06-01</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-15 17:10:47" itemprop="dateModified" datetime="2019-03-15T17:10:47+08:00">2019-03-15</time>
               
             
           </span>
@@ -406,6 +418,8 @@
           
 
           
+              <div class="post-description">在使用`koa`和`multer`构造网站文件上传功能的过程中遇到了几个棘手的问题。</div>
+          
 
         </div>
       </header>
@@ -420,38 +434,28 @@
       
 
       
-        <p>在使用koa和multer构造网站文件上传功能的过程中遇到了几个棘手的问题。</p>
-<p>根据官方文档的<a href="https://github.com/expressjs/multer" target="_blank" rel="noopener">说明</a>，中间件中可以用以下方法调用multer：</p>
+        <p>在使用<code>koa</code>和<code>multer</code>构造网站文件上传功能的过程中遇到了几个棘手的问题。</p>
+<p>根据官方文档的<a href="https://github.com/expressjs/multer" target="_blank" rel="noopener">说明</a>，中间件中可以用以下方法调用<code>multer</code>：</p>
 <pre><code>const multer  = require(&apos;multer&apos;)
 const upload = multer({ dest: &apos;uploads/&apos; })
 const router = require(&apos;koa-router&apos;)()
 
 router.post(&apos;/upload&apos;, upload.single(&apos;files&apos;), async (ctx, next)=&gt;{})
-</code></pre><p>注：ctx是有koa传入的封装了request和response的变量，可以通过ctx.req和ctx.res访问request和response，但是不支持直接调用底层res进行响应，比如res.send, res.writeHead, res.write都应该被避免。</p>
-<p>当我在重构网站控制器的时候，上传文件功能被放在一个单独的文件upload.js而非app.js里面。在upload.js里面，应该如何使用multer实现上传功能，并利用koa-router跳转到下一个页面去？</p>
+</code></pre><p>注：<code>ctx</code>是有<code>koa</code>传入的封装了<code>request</code>和<code>response</code>的变量，可以通过<code>ctx.req</code>和<code>ctx.res</code>访问<code>request</code>和<code>response</code>，但是不支持直接调用底层<code>res</code>进行响应，比如<code>res.send</code>, <code>res.writeHead</code>, <code>res.write</code>都应该被避免。</p>
+<p>当我在重构网站控制器的时候，上传文件功能被放在一个单独的文件<code>upload.js</code>而非<code>app.js</code>里面。在<code>upload.js</code>里面，应该如何使用<code>multer</code>实现上传功能，并利用<code>koa-router</code>跳转到下一个页面去？</p>
 <p>常规的控制器本身是按照如下的方式写:</p>
-<pre><code>module.exports = {
-    &apos;POST /uploads&apos;: async(ctx, next) =&gt; {}
-}
-</code></pre><p>通过另外一个mapping函数来自动处理控制器GET，POST等动作。但是multer这里有两个中间件，upload.single和async(ctx, next)，就没有办法直接放进去。</p>
-<p>Stack Overflow上面找到一个<a href="https://stackoverflow.com/questions/46622473/expressjs-how-to-require-multer-in-another-file" target="_blank" rel="noopener">问答</a>，和我的情况类似。有人给出来了两个方案：<br>方案一</p>
-<pre><code>module.exports = [upload.single(&apos;files&apos;), async (ctx, next) {
-    // Put the rest of your code here
-}];
-</code></pre><p>方案二</p>
-<pre><code>var filesUpload = upload.single(&apos;files&apos;);
-
-module.exports = function(ctx) {
-    imageUpload(ctx, function(err) {
-        // Put the rest of your code here
-    });
-};
-</code></pre><p>第二种方案是把剩下的功能（路由）作为multer中间件的callback，看起来没有第一种方案直观，所以我没有尝试。直接使用第一种方案，把两个中间件作为数组的形式expose出来。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">	<span class="string">'POST /uploads'</span>: <span class="keyword">async</span>(ctx, next) =&gt; &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过另外一个<code>mapping</code>函数来自动处理控制器<code>GET</code>，<code>POST</code>等动作。但是<code>multer</code>这里有两个中间件，<code>upload.single</code>和<code>async(ctx, next)</code>，就没有办法直接放进去。</p>
+<p><code>Stack Overflow</code>上面找到一个<a href="https://stackoverflow.com/questions/46622473/expressjs-how-to-require-multer-in-another-file" target="_blank" rel="noopener">问答</a>，和我的情况类似。有人给出来了两个方案：<br>方案一</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = [upload.single(<span class="string">'files'</span>), <span class="keyword">async</span> (ctx, next) &#123;</span><br><span class="line">	<span class="comment">// Put the rest of your code here</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p>方案二</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> filesUpload = upload.single(<span class="string">'files'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">ctx</span>) </span>&#123;</span><br><span class="line">	imageUpload(ctx, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">		<span class="comment">// Put the rest of your code here</span></span><br><span class="line">	&#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>第二种方案是把剩下的功能（路由）作为<code>multer</code>中间件的<code>callback</code>，看起来没有第一种方案直观，所以我没有尝试。直接使用第一种方案，把两个中间件作为数组的形式<code>expose</code>出来。</p>
 <p>合并成数组后运行测试报错如下：</p>
-<pre><code>Error: post `/uploads`: `middleware` must be a function, not `object`
-</code></pre><p>再回头去网上找到了<a href="https://realguess.net/2015/03/18/use-array-of-middleware-in-koa-router/" target="_blank" rel="noopener">解决办法</a>，说是koa-router不支持以数组作为中间件，多个中间件必须一个一个地输入。如果合并成数组，就会扔出来以上错误，需要调用koa-compose来解决这个问题，形式为以下：</p>
-<pre><code>app.get(&apos;/foo&apos;, compose([middleware1, middleware2]));
-</code></pre><p>按照以上提示，文件上传成功。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: post `/uploads`: `middleware` must be a <span class="keyword">function</span>, not `object`</span><br></pre></td></tr></table></figure>
+<p>再回头去网上找到了<a href="https://realguess.net/2015/03/18/use-array-of-middleware-in-koa-router/" target="_blank" rel="noopener">解决办法</a>，说是<code>koa-router</code>不支持以数组作为中间件，多个中间件必须一个一个地输入。如果合并成数组，就会扔出来以上错误，需要调用<code>koa-compose</code>来解决这个问题，形式为以下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/foo'</span>, compose([middleware1, middleware2]));</span><br></pre></td></tr></table></figure>
+<p>按照以上提示，文件上传成功。</p>
 
       
     </div>
@@ -600,8 +604,6 @@ module.exports = function(ctx) {
                 <div class="site-state-item site-state-tags">
                   
                     
-                    
-                      
                     
                       
                     
