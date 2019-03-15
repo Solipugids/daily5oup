@@ -531,7 +531,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-15 14:33:39" itemprop="dateModified" datetime="2019-03-15T14:33:39+08:00">2019-03-15</time>
+                <time title="Modified: 2019-03-15 17:22:28" itemprop="dateModified" datetime="2019-03-15T17:22:28+08:00">2019-03-15</time>
               
             
           </span>
@@ -565,28 +565,14 @@
 
       
         
-          
-            <p>一般初始情况下，CentOS 7的普通用户如果想要执行<code>sudo</code>相关命令的话，每次都要用<code>su</code>命令切换到<code>root</code>用户下执行。常规新增的普通用户没有在<code>root</code>组下，所以需要通过修改<code>/etc/sudoers</code>文件将指定用户加入<code>root</code>组。修改该文件可以使用<code>visudo</code>命令。</p>
-<ol>
-<li><p>切换到<code>root</code></p>
-<p>用<code>su -</code>命令切换到<code>root</code>组。和<code>su</code>命令不同的是，<code>su -</code>命令可以将环境变量一起传递过来。</p>
-</li>
-<li><p>修改sudoers文件</p>
-<p>输入<code>visudo</code>命令打开<code>sudoers</code>文件，编辑文件的方法和<code>vim</code>的用法一样（该文件开始有提到，修改此文件需要执行<code>visudo</code>）。找到文件中的以下位置，</p>
-<img src="/How-To-Create-a-Sudo-User-on-CentOS-7/1.png">
-<p>在下面添加一行内容，</p>
-<p><code>user ALL = (ALL) ALL</code></p>
-<p>user就是需要添加到root组的指定用户名。这样，该指定用户就会被添加到root组，之后就能直接执行sudo命令进行高权限操作了。另外，添加的内容有以下几种选择，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">user ALL = (ALL) ALL <span class="comment">#添加user到用户组</span></span><br><span class="line">user ALL = (ALL) NOPASSWD: ALL   <span class="comment">#添加user到用户组（执行sudo不需要密码）</span></span><br><span class="line">%group   ALL = (ALL) ALL <span class="comment">#添加group内成员到用户组</span></span><br><span class="line">%group   ALL = (ALL) NOPASSWD: ALL   <span class="comment">#添加group内成员到用户组（执行sudo不需要密码）</span></span><br></pre></td></tr></table></figure>
-<p>修改完成后保存退出即可。</p>
-</li>
-<li><p>修改后测试</p>
-<p>可以通过以下命令测试修改效果，如果配置对了的话，应该会返回结果<code>root</code>（不加<code>sudo</code>的话应该返回登陆用户自己的用户名）。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo whoami</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-          
+          CentOS 7的普通用户如果想要执行sudo相关命令的话，每次都要用su命令切换到root用户下执行。常规新增的普通用户没有在root组下，所以需要通过修改/etc/sudoers文件将指定用户加入root组。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/How-To-Create-a-Sudo-User-on-CentOS-7/">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
