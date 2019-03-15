@@ -123,7 +123,7 @@
 <meta property="og:image" content="https://solipugids.github.io/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/1.png">
 <meta property="og:image" content="https://solipugids.github.io/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/2.png">
 <meta property="og:image" content="https://solipugids.github.io/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/3.png">
-<meta property="og:updated_time" content="2019-03-12T08:17:43.590Z">
+<meta property="og:updated_time" content="2019-03-15T04:17:05.454Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在`CentOS 7`上部署`Django`生产环境">
 <meta name="twitter:description" content="Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可： 1python manage.py runserver 0.0.0.0:8000 但是在生产环境下不会这么做。Django在官方网站上，有关于如何利用WSGI部署生产项目的详细说明。在CentOS 7服务器上发现，WSGI的部署过程比较容易实现，但是WSGI和Nginx联用就容易出错。在实践过程中按照很多网上博客的内容执行没">
@@ -385,7 +385,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-12 16:17:43" itemprop="dateModified" datetime="2019-03-12T16:17:43+08:00">2019-03-12</time>
+                <time title="Modified: 2019-03-15 12:17:05" itemprop="dateModified" datetime="2019-03-15T12:17:05+08:00">2019-03-15</time>
               
             
           </span>
@@ -464,6 +464,7 @@ uWSGI 2.0.17.1
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">include</span> /etc/nginx/conf.d/<span class="regexp">*.conf</span>;</span><br></pre></td></tr></table></figure>
 <p>在这行后面添加以下配置内容：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> website.com www.website.com;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> = favicon.ico &#123; <span class="attribute">access_log</span> <span class="literal">off</span>; <span class="attribute">log_not_found</span> <span class="literal">off</span>; &#125; <span class="comment">#忽略favicon的警告</span></span><br><span class="line">    <span class="attribute">location</span> /static/ &#123;</span><br><span class="line">        <span class="attribute">root</span> /home/user/website/;</span><br><span class="line">    &#125; <span class="comment">#配置静态文件目录</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">include</span> uwsgi_params; <span class="comment">#使用同目录下的uWSGI参数配置</span></span><br><span class="line">        <span class="attribute">uwsgi_pass</span> unix:/run/uwsgi/website.sock; <span class="comment">#通过此文件与uWSGI通讯</span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于<code>Nginx</code>配置文件中<code>Server</code>和<code>Location</code>的匹配逻辑，具体可以参考<a href="https://juejin.im/post/5c89f96f518825573a5e630b" target="_blank" rel="noopener">掘金的文章</a>。</p>
 <p>检测<code>Nginx</code>是否能够正常运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nginx -t</span><br></pre></td></tr></table></figure>
 <p>配置正常的话会显示以下信息：</p>
@@ -619,7 +620,7 @@ uWSGI 2.0.17.1
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
