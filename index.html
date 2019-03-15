@@ -992,7 +992,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-15 17:14:02" itemprop="dateModified" datetime="2019-03-15T17:14:02+08:00">2019-03-15</time>
+                <time title="Modified: 2019-03-15 17:17:55" itemprop="dateModified" datetime="2019-03-15T17:17:55+08:00">2019-03-15</time>
               
             
           </span>
@@ -1026,21 +1026,14 @@
 
       
         
-          
-            <p>在使用<code>Koa2</code>框架过程中，发现如果想在特定页面下实时输出信息，需要引用<a href="https://socket.io/" target="_blank" rel="noopener">socket.io模块</a>。<br>该模块本身的功能很多，除了可以向用户实时打印信息外，最重要是可以搭建类似即时网页聊天室。这个模块的原理是当用户连接上网站之后，就建立起了一个socket连接，随时发起会话。对于我的需求来说，其实只是想实现其中一个非常简单的特性，就是在其中一个页面中显示服务器上的运行信息或者输出。最开始的考虑是建立一个<a href="https://socket.io/docs/rooms-and-namespaces/#custom-namespaces" target="_blank" rel="noopener">namespace</a>。这样可以为指定的路径或者路由页面分配<code>socket</code>，起到降低<code>TCP</code>连接和隔离的效果。在这个<code>namespace</code>下面，可以添加<code>join</code>和<code>leave</code>的功能。</p>
-<p>对于在<code>Koa2</code>下创建<code>namespace</code>的方法，用.of实现起来很简单，</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">'http'</span>).createServer(app.callback());</span><br><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>)(server);</span><br><span class="line">io</span><br><span class="line">	.of(<span class="string">'/running'</span>)</span><br><span class="line">	.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">socket</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'client connected'</span>); <span class="comment">//终端显示连接状态</span></span><br><span class="line">		setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;socket.emit(<span class="string">'date'</span>, &#123;<span class="string">'date'</span>: <span class="keyword">new</span> <span class="built_in">Date</span>()&#125;, <span class="number">1000</span>);&#125;) <span class="comment">//页面打印当前时间</span></span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
-<p>同时记得在客户端页面指定</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> socket = io(<span class="string">'/running'</span>);</span><br></pre></td></tr></table></figure>
-<p><code>socket.io</code>模块对于<code>express</code>框架的支持文档和内容很多，官网上的许多例子基本都是用<code>express</code>，关于<code>Koa2</code>的就比较少。</p>
-<p>最简单的实现方式就是将<code>io</code>对象替换为全局（<code>global</code>）对象，即将</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>)(server);</span><br></pre></td></tr></table></figure>
-<p>替换为</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global.io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>)(server);</span><br></pre></td></tr></table></figure>
-<p>这样，在路由页面下，直接打开<code>io</code>即可</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">socket</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'someone connected'</span>);</span><br><span class="line">	setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;socket.emit(<span class="string">'date'</span>, &#123;<span class="string">'date'</span>: <span class="keyword">new</span> <span class="built_in">Date</span>()&#125;, <span class="number">1000</span>);&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-          
+          在使用koa2框架过程中，发现如果想在特定页面下实时输出信息，需要引用socket.io模块。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Use-Socket-io-in-other-modules-by-Koa2/">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1155,7 +1148,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-15 17:14:03" itemprop="dateModified" datetime="2019-03-15T17:14:03+08:00">2019-03-15</time>
+                <time title="Modified: 2019-03-15 17:16:41" itemprop="dateModified" datetime="2019-03-15T17:16:41+08:00">2019-03-15</time>
               
             
           </span>
@@ -1189,7 +1182,7 @@
 
       
         
-          在使用`koa`和`multer`构造网站文件上传功能的过程中遇到了几个棘手的问题。
+          在使用koa和multer构造网站文件上传功能的过程中遇到了几个棘手的问题。
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/Use-Array-of-Middleware-in-Koa-Router/">
