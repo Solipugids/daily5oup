@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://solipugids.github.io/How-To-Create-a-Sudo-User-on-CentOS-7/</loc>
+    
+    <lastmod>2019-03-15T06:33:39.124Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://solipugids.github.io/about/index.html</loc>
     
     <lastmod>2019-03-15T06:07:27.312Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>https://solipugids.github.io/SSL-configuration-in-Django/</loc>
     
     <lastmod>2019-03-12T08:20:54.655Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://solipugids.github.io/How-To-Create-a-Sudo-User-on-CentOS-7/</loc>
-    
-    <lastmod>2019-03-12T08:15:23.878Z</lastmod>
     
   </url>
   
