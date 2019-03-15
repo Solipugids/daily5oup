@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-cn">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -90,7 +90,7 @@
     root: '/',
     scheme: 'Mist',
     version: '6.3.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -119,7 +119,7 @@
 <meta property="og:url" content="https://solipugids.github.io/Use-Socket-io-in-other-modules-by-Koa2/index.html">
 <meta property="og:site_name" content="是日靚湯">
 <meta property="og:description" content="在使用Koa2框架过程中，发现如果想在特定页面下实时输出信息，需要引用socket.io模块。该模块本身的功能很多，除了可以向用户实时打印信息外，最重要是可以搭建类似即时网页聊天室。这个模块的原理是当用户连接上网站之后，就建立起了一个socket连接，随时发起会话。对于我的需求来说，其实只是想实现其中一个非常简单的特性，就是在其中一个页面中显示服务器上的运行信息或者输出。最开始的考虑是建立一个na">
-<meta property="og:locale" content="zh-cn">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-06-21T10:11:53.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Koa2框架下在特定页面或者路由中使用socket.io的解决方案">
@@ -189,7 +189,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -442,6 +442,14 @@ io
     
 
     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode ex. /uploads/wechat-qcode.jpg" alt="WANG Chao wechat" style="width: 200px; max-width: 100%;">
+    <div>ex. subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+      </div>
+    
 
     
 
@@ -595,6 +603,12 @@ io
           
 
           
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
           
 
           

@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-cn">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -90,7 +90,7 @@
     root: '/',
     scheme: 'Mist',
     version: '6.3.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -112,21 +112,21 @@
 
 
 
-  <meta name="description" content="Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可： 1python manage.py runserver 0.0.0.0:8000 但是在生产环境下不会这么做。Django在官方网站上，有关于如何利用WSGI部署生产项目的详细说明。在CentOS 7服务器上发现，WSGI的部署过程比较容易实现，但是WSGI和Nginx联用就容易出错。在实践过程中按照很多网上博客的内容执行没">
+  <meta name="description" content="Django的生产环境部署步骤，主要分为Django自身配置，以及uWSGI和Nginx的配置。本文主要介绍在CentOS环境下相关文件的配置步骤。">
 <meta name="keywords" content="django,uwsgi,centos,nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在`CentOS 7`上部署`Django`生产环境">
+<meta property="og:title" content="在CentOS 7上部署Django生产环境">
 <meta property="og:url" content="https://solipugids.github.io/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/index.html">
 <meta property="og:site_name" content="是日靚湯">
-<meta property="og:description" content="Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可： 1python manage.py runserver 0.0.0.0:8000 但是在生产环境下不会这么做。Django在官方网站上，有关于如何利用WSGI部署生产项目的详细说明。在CentOS 7服务器上发现，WSGI的部署过程比较容易实现，但是WSGI和Nginx联用就容易出错。在实践过程中按照很多网上博客的内容执行没">
-<meta property="og:locale" content="zh-cn">
+<meta property="og:description" content="Django的生产环境部署步骤，主要分为Django自身配置，以及uWSGI和Nginx的配置。本文主要介绍在CentOS环境下相关文件的配置步骤。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://solipugids.github.io/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/1.png">
 <meta property="og:image" content="https://solipugids.github.io/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/2.png">
 <meta property="og:image" content="https://solipugids.github.io/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/3.png">
-<meta property="og:updated_time" content="2019-03-15T04:17:05.454Z">
+<meta property="og:updated_time" content="2019-03-15T05:27:01.074Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在`CentOS 7`上部署`Django`生产环境">
-<meta name="twitter:description" content="Django在本地测试环境运行比较简单，部署好之后直接运行以下命令即可： 1python manage.py runserver 0.0.0.0:8000 但是在生产环境下不会这么做。Django在官方网站上，有关于如何利用WSGI部署生产项目的详细说明。在CentOS 7服务器上发现，WSGI的部署过程比较容易实现，但是WSGI和Nginx联用就容易出错。在实践过程中按照很多网上博客的内容执行没">
+<meta name="twitter:title" content="在CentOS 7上部署Django生产环境">
+<meta name="twitter:description" content="Django的生产环境部署步骤，主要分为Django自身配置，以及uWSGI和Nginx的配置。本文主要介绍在CentOS环境下相关文件的配置步骤。">
 <meta name="twitter:image" content="https://solipugids.github.io/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/1.png">
 
 
@@ -144,7 +144,7 @@
   };
 </script>
 
-  <title>在`CentOS 7`上部署`Django`生产环境 | 是日靚湯</title>
+  <title>在CentOS 7上部署Django生产环境 | 是日靚湯</title>
   
 
 
@@ -193,7 +193,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -343,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">在`CentOS 7`上部署`Django`生产环境
+          <h1 class="post-title" itemprop="name headline">在CentOS 7上部署Django生产环境
               
             
           </h1>
@@ -385,7 +385,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-15 12:17:05" itemprop="dateModified" datetime="2019-03-15T12:17:05+08:00">2019-03-15</time>
+                <time title="Modified: 2019-03-15 13:27:01" itemprop="dateModified" datetime="2019-03-15T13:27:01+08:00">2019-03-15</time>
               
             
           </span>
@@ -410,6 +410,8 @@
 
           
 
+          
+              <div class="post-description">Django的生产环境部署步骤，主要分为Django自身配置，以及uWSGI和Nginx的配置。本文主要介绍在CentOS环境下相关文件的配置步骤。</div>
           
 
         </div>
@@ -503,6 +505,14 @@ uWSGI 2.0.17.1
     
     
 
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode ex. /uploads/wechat-qcode.jpg" alt="WANG Chao wechat" style="width: 200px; max-width: 100%;">
+    <div>ex. subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+      </div>
     
 
     
@@ -668,6 +678,12 @@ uWSGI 2.0.17.1
           
 
           
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
           
 
           

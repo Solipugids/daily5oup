@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-cn">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -90,7 +90,7 @@
     root: '/',
     scheme: 'Mist',
     version: '6.3.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -119,7 +119,7 @@
 <meta property="og:url" content="https://solipugids.github.io/Use-Array-of-Middleware-in-Koa-Router/index.html">
 <meta property="og:site_name" content="是日靚湯">
 <meta property="og:description" content="在使用koa和multer构造网站文件上传功能的过程中遇到了几个棘手的问题。 根据官方文档的说明，中间件中可以用以下方法调用multer： const multer  = require(&amp;apos;multer&amp;apos;) const upload = multer({ dest: &amp;apos;uploads/&amp;apos; }) const router = require(&amp;apos;koa">
-<meta property="og:locale" content="zh-cn">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-06-01T09:07:52.955Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="koa和multer构造网站文件上传功能">
@@ -189,7 +189,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -452,6 +452,14 @@ module.exports = function(ctx) {
     
 
     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode ex. /uploads/wechat-qcode.jpg" alt="WANG Chao wechat" style="width: 200px; max-width: 100%;">
+    <div>ex. subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+      </div>
+    
 
     
 
@@ -601,6 +609,12 @@ module.exports = function(ctx) {
           
 
           
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
           
 
           
