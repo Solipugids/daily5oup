@@ -353,7 +353,7 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/SSL-configuration-in-Django/" itemprop="url">
-                  SSL configuration in Django
+                  配置Django应用的SSL认证
                 </a>
               
             
@@ -382,6 +382,22 @@
               <time title="Created: 2019-03-12 16:20:54" itemprop="dateCreated datePublished" datetime="2019-03-12T16:20:54+08:00">2019-03-12</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-19 13:25:22" itemprop="dateModified" datetime="2019-03-19T13:25:22+08:00">2019-03-19</time>
+              
             
           </span>
 
@@ -415,7 +431,38 @@
       
         
           
-            
+            <p>之前的文章中有提到通过<code>uWSGI</code>和<code>Ngix</code>在<code>CentOS 7</code>环境下配置<code>Django</code>的生产环境。生产环境配置完成后，就可以通过设置<code>Django</code>和<code>Nginx</code>来安装<code>SSL</code>认证。</p>
+<p>获得<code>SSL</code>认证有几种方式：</p>
+<ol>
+<li>自己生成认证（自签证书，用户访问需要导入根证书）</li>
+<li>通过<code>Let’s Encrypt</code>获得免费认证（有效期短）</li>
+<li>从网上<code>SSL</code>服务商购买认证（公共证书，价格不贵）</li>
+</ol>
+<p>之前申请<code>Github edu</code>认证的时候，认证完成之后附带赠送了<code>namecheap</code>一年的SSL服务。所以我打算先用上一年的<code>namecheap</code>证书。注册<code>namecheap</code>后，在上面购买<code>SSL</code>认证的时候输入激活码就可以购买成功。<code>SSL</code>认证的有效时间从购买之日开始计算。</p>
+<h2 id="生成CSR"><a href="#生成CSR" class="headerlink" title="生成CSR"></a>生成CSR</h2><p>登陆服务器，用以下命令生成<code>CSR</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openssl req -new -newkey rsa:2048 -nodes -keyout domain.key -out domain.csr</span><br><span class="line"><span class="comment">#domain名称可以修改成自己的域名</span></span><br></pre></td></tr></table></figure>
+<p>输入这个命令后，需要回答一系列的问题。最后在当前目录下生成<code>domain.key</code>和<code>domain.csr</code>两个文件。这两个文件保存好不要删除。</p>
+<h2 id="激活SSL认证"><a href="#激活SSL认证" class="headerlink" title="激活SSL认证"></a>激活SSL认证</h2><p>首先去<code>namecheap</code>会员的<code>dashboard</code>页面上添加需要绑定<code>SSL</code>认证的网站域名。然后在产品中选择<code>SSL Certificates</code>产品激活，把刚才的<code>domain.csr</code>文件中的内容粘贴到激活页面。在认证的过程中，需要选择用不同的方式来确认域名的所有权，包括<code>Email</code>，<code>HTTP</code>或者<code>DNS</code>解析的方法。</p>
+<p><code>Email</code>认证就是向带域名后缀的管理员邮箱（比如<a href="mailto:admin@domain.com" target="_blank" rel="noopener">admin@domain.com</a>）发送认证邮件，邮件会附带SSL认证文件。</p>
+<p><code>HTTP</code>认证的方式会提供一个文本校验文件，把文本校验文件放在网站指定目录下并可以通过外部链接索引到。</p>
+<p><code>DNS</code>认证需要去域名管理商那里，在域名解析上添加一个<code>CNAME</code>记录条目。我选择的是这种方式，这种方式的缺点是认证等待时间比较长，但是认证流程比较简单，复制粘贴几步就搞定。添加条目后就可以等<code>namecheap</code>那边去处理。处理完成后，会发送一封确认邮件到你的邮箱里，告诉你<code>SSL</code>认证完成，认证文件可以在邮件中或者<code>namecheap</code>网站里下载。</p>
+<img src="/SSL-configuration-in-Django/1.png">
+<h2 id="安装SSL认证"><a href="#安装SSL认证" class="headerlink" title="安装SSL认证"></a>安装SSL认证</h2><p>在<code>namecheap</code>上激活SSL认证后，会下载两个文件，一个是<code>domain.crt</code>，一个是<code>domain.ca-bundle</code>。把两个文件进行合并后上传到网站服务器上：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat domain.crt domain.ca-bundle &gt;&gt; domain_cert_chain.crt</span><br></pre></td></tr></table></figure>
+<p>接下里需要用到两个文件，一个是刚刚上传的<code>domain_cert_chain.crt</code>，一个是之前第一步里生成的<code>domain.key</code>。把这两个文件拷贝到<code>/etc/ssl</code>目录下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp domain_cert_chain.crt /etc/ssl/domain/</span><br><span class="line">sudo cp domain.key /etc/ssl/domain/</span><br></pre></td></tr></table></figure>
+<p>然后去修改<code>nginx.conf</code>文件里的<code>Nginx</code>配置：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">listen</span> <span class="number">443</span>;</span><br><span class="line"><span class="attribute">ssl</span> <span class="literal">on</span>;</span><br><span class="line"><span class="attribute">ssl_certificate</span> /etc/ssl/domain/cert_chain.crt;</span><br><span class="line"><span class="attribute">ssl_certificate_key</span> /etc/ssl/domain/logictrn.key;</span><br><span class="line"><span class="attribute">server_name</span> <span class="regexp">*.domain.com</span>;</span><br></pre></td></tr></table></figure>
+<p>主要修改是添加<code>/etc/ssl/</code>目录下的两个文件，并打开<code>ssl</code>选项和监听443端口。然后重启一下<code>Nginx</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart nginx</span><br></pre></td></tr></table></figure>
+<h2 id="重定向HTTPS"><a href="#重定向HTTPS" class="headerlink" title="重定向HTTPS"></a>重定向HTTPS</h2><p>重启后发现，用户登录不会直接默认走<code>https</code>而是用<code>http</code>，网站服务器如果没有打开80端口的话，就会报错。所以需要设置重定向80端口的流量到<code>https</code>服务下。</p>
+<p>在<code>nginx.conf</code>文件里先添加80端口的监听：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">	<span class="attribute">server_name</span> <span class="regexp">*.domain.com</span>;</span><br><span class="line">	<span class="attribute">return</span> <span class="number">301</span> https://www.domain.com<span class="variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就能重定向非加密到加密连接。最后需要添加<code>Django</code>的配置<code>setting.py</code>:</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">#SSL</span></span><br><span class="line"><span class="xml">SESSION_COOKIE_HTTPONLY = False</span></span><br><span class="line"><span class="xml">SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')</span></span><br><span class="line"><span class="xml">SECURE_SSL_REDIRECT = True</span></span><br><span class="line"><span class="xml">CSRF_COOKIE_SECURE = True</span></span><br><span class="line"><span class="xml">SESSION_COOKIE_SECURE = True</span></span><br></pre></td></tr></table></figure>
+<p>配置完成，重启<code>Django</code>，<code>uWSGI</code>和<code>Nginx</code>。</p>
+<p><code>namecheap</code>的<code>PositiveSSL</code>服务一年是9美元，通过邮件看用的也是<code>COMODO</code>，如果嫌贵的话，可以在淘宝上自己淘个便宜的用。</p>
+
           
         
       
@@ -1296,7 +1343,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
@@ -1372,17 +1425,13 @@
 
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> v3.8.0</div>
 
 
 
-  <span class="post-meta-divider">|</span>
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
-
-
+  <div class="footer-custom">Hosted by <a target="_blank" rel="external nofollow" href="dailysoup.tk"><b>如是我闻，谁来救赎</b></a></div>
 
 
         
