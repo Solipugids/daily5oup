@@ -116,23 +116,23 @@
 <meta name="keywords" content="django,namecheap,ssl,https">
 <meta property="og:type" content="article">
 <meta property="og:title" content="配置Django应用的SSL认证">
-<meta property="og:url" content="https://solipugids.github.io/SSL-configuration-in-Django/index.html">
+<meta property="og:url" content="http://dailysoup.tk/SSL-configuration-in-Django/index.html">
 <meta property="og:site_name" content="是日靚湯">
 <meta property="og:description" content="SSL认证是Django应用的可选项，但是现在大部分网站为了安全考虑，都开始考虑HTTPS的部署。Django的生产环境部署好之后，购买一个商业的SSL认证服务，就可以在短时间内完成部署。本文以namecheap的PositiveSSL产品为例，说明如何进行HTTPS的部署。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://solipugids.github.io/SSL-configuration-in-Django/1.png">
+<meta property="og:image" content="http://dailysoup.tk/SSL-configuration-in-Django/1.png">
 <meta property="og:updated_time" content="2019-03-19T05:36:46.774Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置Django应用的SSL认证">
 <meta name="twitter:description" content="SSL认证是Django应用的可选项，但是现在大部分网站为了安全考虑，都开始考虑HTTPS的部署。Django的生产环境部署好之后，购买一个商业的SSL认证服务，就可以在短时间内完成部署。本文以namecheap的PositiveSSL产品为例，说明如何进行HTTPS的部署。">
-<meta name="twitter:image" content="https://solipugids.github.io/SSL-configuration-in-Django/1.png">
+<meta name="twitter:image" content="http://dailysoup.tk/SSL-configuration-in-Django/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://solipugids.github.io/SSL-configuration-in-Django/">
+  <link rel="canonical" href="http://dailysoup.tk/SSL-configuration-in-Django/">
 
 
 
@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://solipugids.github.io/SSL-configuration-in-Django/">
+    <link itemprop="mainEntityOfPage" href="http://dailysoup.tk/SSL-configuration-in-Django/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WANG Chao">
@@ -464,7 +464,7 @@
 <p>在<code>nginx.conf</code>文件里先添加80端口的监听：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">	<span class="attribute">server_name</span> <span class="regexp">*.domain.com</span>;</span><br><span class="line">	<span class="attribute">return</span> <span class="number">301</span> https://www.domain.com<span class="variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样就能重定向非加密到加密连接。最后需要添加<code>Django</code>的配置<code>setting.py</code>:</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#SSL</span><br><span class="line">SESSION_COOKIE_HTTPONLY = False</span><br><span class="line">SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')</span><br><span class="line">SECURE_SSL_REDIRECT = True</span><br><span class="line">CSRF_COOKIE_SECURE = True</span><br><span class="line">SESSION_COOKIE_SECURE = True</span><br></pre></td></tr></table></figure>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">#SSL</span></span><br><span class="line"><span class="xml">SESSION_COOKIE_HTTPONLY = False</span></span><br><span class="line"><span class="xml">SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')</span></span><br><span class="line"><span class="xml">SECURE_SSL_REDIRECT = True</span></span><br><span class="line"><span class="xml">CSRF_COOKIE_SECURE = True</span></span><br><span class="line"><span class="xml">SESSION_COOKIE_SECURE = True</span></span><br></pre></td></tr></table></figure>
 <p>配置完成，重启<code>Django</code>，<code>uWSGI</code>和<code>Nginx</code>。</p>
 <p><code>namecheap</code>的<code>PositiveSSL</code>服务一年是9美元，通过邮件看用的也是<code>COMODO</code>，如果嫌贵的话，可以在淘宝上自己淘个便宜的用。</p>
 
@@ -484,7 +484,7 @@
     <strong>Post author:  </strong>WANG Chao</li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="https://solipugids.github.io/SSL-configuration-in-Django/" title="配置Django应用的SSL认证">https://solipugids.github.io/SSL-configuration-in-Django/</a>
+    <a href="http://dailysoup.tk/SSL-configuration-in-Django/" title="配置Django应用的SSL认证">http://dailysoup.tk/SSL-configuration-in-Django/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.</li>
