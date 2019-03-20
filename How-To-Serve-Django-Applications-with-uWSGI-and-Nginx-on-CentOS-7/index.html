@@ -116,25 +116,25 @@
 <meta name="keywords" content="centos,django,uwsgi,nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在CentOS 7上部署Django生产环境">
-<meta property="og:url" content="http://dailysoup.tk/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/index.html">
+<meta property="og:url" content="http://daily5oup.com/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/index.html">
 <meta property="og:site_name" content="是日靚湯">
 <meta property="og:description" content="Django的生产环境部署步骤，主要分为Django自身配置，以及uWSGI和Nginx的配置。本文主要介绍在CentOS环境下相关文件的配置步骤。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://dailysoup.tk/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/1.png">
-<meta property="og:image" content="http://dailysoup.tk/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/2.png">
-<meta property="og:image" content="http://dailysoup.tk/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/3.png">
+<meta property="og:image" content="http://daily5oup.com/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/1.png">
+<meta property="og:image" content="http://daily5oup.com/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/2.png">
+<meta property="og:image" content="http://daily5oup.com/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/3.png">
 <meta property="og:updated_time" content="2019-03-15T05:27:01.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在CentOS 7上部署Django生产环境">
 <meta name="twitter:description" content="Django的生产环境部署步骤，主要分为Django自身配置，以及uWSGI和Nginx的配置。本文主要介绍在CentOS环境下相关文件的配置步骤。">
-<meta name="twitter:image" content="http://dailysoup.tk/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/1.png">
+<meta name="twitter:image" content="http://daily5oup.com/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://dailysoup.tk/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/">
+  <link rel="canonical" href="http://daily5oup.com/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/">
 
 
 
@@ -337,7 +337,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://dailysoup.tk/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/">
+    <link itemprop="mainEntityOfPage" href="http://daily5oup.com/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WANG Chao">
@@ -456,7 +456,7 @@ uWSGI 2.0.17.1
 <p>然后创建自己网站<code>website</code>运行的虚拟环境，并在虚拟环境下安装<code>Django</code>。如果想指定<code>Django</code>版本，在后面加上参数。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv website</span><br><span class="line">pip install django==1.11.13</span><br></pre></td></tr></table></figure>
 <p>安装虚拟环境后，会发现PS I提示符前面有高亮字符提示目前在虚拟环境下。如果想退出或者返回虚拟环境，分别输入以下两个命令。</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deactivate</span><br><span class="line"><span class="attribute">workon</span> website</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deactivate</span></span><br><span class="line"><span class="attribute">workon website</span></span><br></pre></td></tr></table></figure>
 <p>回到<code>home</code>目录，在<code>home</code>目录创建<code>website</code>项目，项目的名称根据自己的需要定制。如果已经有开发好的项目，直接拷贝过来即可。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">django-admin.py startproject website</span><br><span class="line"><span class="built_in">cd</span> ~/website</span><br><span class="line">./manage.py migrate</span><br></pre></td></tr></table></figure>
 <p>在项目下找到<code>setting.py</code>文件配置<code>allowed_host</code>和<code>static_root</code>参数，然后整理<code>static</code>文件并运行网站进行测试。</p>
@@ -492,7 +492,7 @@ uWSGI 2.0.17.1
 <p>针对此问题查阅网上的时候，很多网上的回复都说是用户或<code>Nginx</code>配置下的静态目录的权限引起的。默认情况下，<code>Nginx</code>会通过名称为<code>nginx</code>的用户进行操作。但是在启动之前已经将自己的账户加入<code>nginx</code>用户组，按道理来说文件权限不会受影响。而且测试了一下在更改了所有目录和文件的权限之后，问题依然存在。这个问题困扰了我一天，后来在<a href="https://www.v2ex.com/t/390432" target="_blank" rel="noopener">V2EX</a>上看到两个小哥提示了一句话才恍然大悟：</p>
 <img src="/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/2.png">
 <p>其实在一些教程上也有提到，配置生产模式之前要把<code>SELinux</code>设置为宽容模式，只是自己没有注意到这个。所以碰到这个报错的话，用<code>getenforce</code>检查下，如果在<code>enforcing</code>状态的话就设置<code>SELinux</code>为宽容模式：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getenforce</span><br><span class="line"><span class="attribute">sudo</span> setenforce <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getenforce</span><br><span class="line">sudo setenforce <span class="number">0</span></span><br></pre></td></tr></table></figure>
 <p>后来在阿里云服务器上发现，阿里云下的<code>CentOS 7</code> 直接把<code>SELinux</code>给关掉了，省事：</p>
 <img src="/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/3.png">
 <h3 id="Nginx配置文件中alias和root的区别"><a href="#Nginx配置文件中alias和root的区别" class="headerlink" title="Nginx配置文件中alias和root的区别"></a><code>Nginx</code>配置文件中<code>alias</code>和<code>root</code>的区别</h3><p>仔细看一些<code>Nginx</code>配置文件会发现，有的配置下路径前写的是<code>root</code>，有的路径前写的是<code>alias</code>，比如：</p>
@@ -523,7 +523,7 @@ uWSGI 2.0.17.1
     <strong>Post author:  </strong>WANG Chao</li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://dailysoup.tk/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/" title="在CentOS 7上部署Django生产环境">http://dailysoup.tk/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/</a>
+    <a href="http://daily5oup.com/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/" title="在CentOS 7上部署Django生产环境">http://daily5oup.com/How-To-Serve-Django-Applications-with-uWSGI-and-Nginx-on-CentOS-7/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.</li>
